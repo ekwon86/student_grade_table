@@ -1,10 +1,14 @@
 /**
  * Define all global variables here
  */
+
+
 /**
+ *
  * student_array - global array to hold student objects
  * @type {Array}
  */
+var student_array = [];
 
 /**
  * inputIds - id's of the elements that are used to add students
@@ -14,11 +18,15 @@
 /**
  * addClicked - Event Handler when user clicks the add button
  */
+$('.add').click(function() {
 
+});
 /**
  * cancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  */
-
+$('.cancel').click(function() {
+   console.log('cancel button has been clicked');
+});
 /**
  * addStudent - creates a student objects based on input fields in the form and adds the object to global student array
  *
@@ -51,8 +59,13 @@
 /**
  * reset - resets the application to initial state. Global variables reset, DOM get reset to initial load state
  */
+function reset(){
 
+}
 
 /**
  * Listen for the document to load and reset the data to the initial state
  */
+$(document).ready(function(){
+    
+});
