@@ -1,7 +1,7 @@
 /**
  * Define all global variables here
  */
-
+// var
 
 /**
  *
@@ -19,9 +19,7 @@ var student_array = [];
  * addClicked - Event Handler when user clicks the add button
  */
 function addClicked() {
-    $('.add_button').click(function() {
-        console.log('add button has been clicked');
-    });
+    console.log('add button has been clicked');
 }
 
 
@@ -29,12 +27,10 @@ function addClicked() {
  * cancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  */
 function cancelClicked() {
-    $('.cancel_button').click(function () {
-        $('#studentName').html('');
-        $('#course').html('');
-        $('#studentGrade').html('');
-        console.log('cancel button has been clicked');
-    });
+    console.log('cancel button has been clicked');
+    $('#studentName').val('');
+    $('#course').val('');
+    $('#studentGrade').val('');
 }
 
 /**
