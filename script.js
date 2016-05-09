@@ -18,19 +18,24 @@ var student_array = [];
 /**
  * addClicked - Event Handler when user clicks the add button
  */
-$('.add_button').click(function() {
-    console.log('add button has been clicked');
-});
+function addClicked() {
+    $('.add_button').click(function() {
+        console.log('add button has been clicked');
+    });
+}
+
 
 /**
  * cancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  */
-$('.cancel_button').click(function() {
-    $('#studentName').html('');
-    $('#course').html('');
-    $('#studentGrade').html('');
-    console.log('cancel button has been clicked');
-});
+function cancelClicked() {
+    $('.cancel_button').click(function () {
+        $('#studentName').html('');
+        $('#course').html('');
+        $('#studentGrade').html('');
+        console.log('cancel button has been clicked');
+    });
+}
 
 /**
  * addStudent - creates a student objects based on input fields in the form and adds the object to global student array
@@ -38,7 +43,7 @@ $('.cancel_button').click(function() {
  * @return undefined
  */
 function addStudent () {
-
+    student_array.push(studentObj);
 }
 /**
  * clearAddStudentForm - clears out the form values based on inputIds variable
@@ -90,5 +95,5 @@ function reset(){
  * Listen for the document to load and reset the data to the initial state
  */
 $(document).ready(function(){
-    console.log('The document has been loaded');
+    console.log('The document has been loaded.');
 });
