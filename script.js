@@ -1,7 +1,7 @@
 /**
  * Define all global variables here
  */
-// var
+var studentObj = {};
 
 /**
  *
@@ -15,19 +15,18 @@ var student_array = [];
  * @type {string[]}
  */
 
+
 /**
  * addClicked - Event Handler when user clicks the add button
  */
 function addClicked() {
-    console.log('add button has been clicked');
+    addStudentToDom();
 }
-
 
 /**
  * cancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  */
 function cancelClicked() {
-    console.log('cancel button has been clicked');
     $('#studentName').val('');
     $('#course').val('');
     $('#studentGrade').val('');
@@ -38,9 +37,20 @@ function cancelClicked() {
  *
  * @return undefined
  */
+
+
+
 function addStudent () {
+    function studentObj() {
+        this.name = $('#studentName').val();
+        this.course = $('#course').val();
+        this.grade = $('#studentGrade').val();
+    }
     student_array.push(studentObj);
 }
+
+
+
 /**
  * clearAddStudentForm - clears out the form values based on inputIds variable
  */
@@ -51,23 +61,32 @@ function clearAddStudentForm () {
  * calculateAverage - loop through the global student array and calculate average grade and return that value
  * @returns {number}
  */
-// function calculateAverage() {
-//     for (i=0; i<student_array.length, i++) {
-//     }
-// }
+function calculateAverage() {
+    var total = 0;
+    for (var i=0; i<student_array.grade.length; i++) {
+        total += student_array.grade[i];
+    }
+    var avg = Math.round(total / student_array.grade.length);
+    $('.avgGrade').html(avg);
+}
 
 /**
  * updateData - centralized function to update the average and call student list update
  */
 function updateData () {
-
+    calculateAverage();
+    updateStudentList();
 }
 
 /**
  * updateStudentList - loops through global student array and appends each objects data into the student-list-container > list-body
+ go through array . wipe out the array and reorder them
+
  */
 function updateStudentList() {
+    for (var i = 0; i < student_array.length; i++) {
 
+    }
 }
 
 /**
@@ -75,9 +94,14 @@ function updateStudentList() {
  * into the .student_list tbody
  * @param studentObj
  */
-function addStudentToDom(studentObj){
+function addStudentToDom(studentObj) {
+    var new_tr = $('<tr>');
+    var new_td = $('<td>');
 
+    new_tr.append(new_td);
+    $('.student-list').append(new_tr);
 }
+
 
 
 /**
