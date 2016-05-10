@@ -13,7 +13,6 @@
 var studentName = $("#studentName");
 var course = $("#course");
 var studentGrade = $("#studentGrade");
-var tableBody = $("tbody");
 var student_array = [];
 
 /**
@@ -73,6 +72,22 @@ function calculateAverage() {
  */
 function updateData () {
     updateStudentList();
+    var avg_grade = calculateAverage();
+    if (avg_grade >= 90 && avg_grade <= 100) {
+        $(".avgGrade").addClass('label label-primary');
+    }
+    else if (avg_grade >= 80 && avg_grade <= 89) {
+        $(".avgGrade").addClass('label label-info');
+    }
+    else if (avg_grade >= 70 && avg_grade <= 79) {
+        $(".avgGrade").addClass('label label-success');
+    }
+    else if (avg_grade >= 60 && avg_grade <= 69) {
+        $(".avgGrade").addClass('label label-warning');
+    }
+    else {
+        $(".avgGrade").addClass('label label-danger');
+    }
     $(".avgGrade").text(calculateAverage());
 }
 
@@ -110,7 +125,7 @@ function addStudentToDom(studentObj) {
  * reset - resets the application to initial state. Global variables reset, DOM get reset to initial load state
  */
 function reset () {
-
+    student_array = [];
 }
 
 
@@ -118,6 +133,7 @@ function reset () {
  * Listen for the document to load and reset the data to the initial state
  */
 $(document).ready(function(){
+    $('tbody').html('<h3>User Info Unavailable</h3>').addClass('');
     reset();
 });
 
@@ -130,4 +146,6 @@ $(document).ready(function(){
  Store the index when adding to the DOM into a data attribute
  Once the object has been removed from the array, remove the DOM element that is the parent of the delete
  button that was clicked.
+ *
  */
+
