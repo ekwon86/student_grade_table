@@ -1,35 +1,35 @@
 /**
  * Define all global variables here
  */
-var studentObj = {};
-
 /**
  *
  * student_array - global array to hold student objects
  * @type {Array}
  */
-var student_array = [];
-
 /**
  * inputIds - id's of the elements that are used to add students
  * @type {string[]}
  */
-
+var student_array = [];
+var studentName = $("#studentName");
+var course = $("#course");
+var studentGrade = $("#studentGrade");
+var tableBody = $("tbody");
 
 /**
  * addClicked - Event Handler when user clicks the add button
  */
 function addClicked() {
-    addStudentToDom();
+    addStudent();
+    updateData();
+    clearAddStudentForm();
 }
 
 /**
  * cancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  */
 function cancelClicked() {
-    $('#studentName').val('');
-    $('#course').val('');
-    $('#studentGrade').val('');
+    clearAddStudentForm();
 }
 
 /**
@@ -38,24 +38,22 @@ function cancelClicked() {
  * @return undefined
  */
 
-
-
 function addStudent () {
-    function studentObj() {
-        this.name = $('#studentName').val();
-        this.course = $('#course').val();
-        this.grade = $('#studentGrade').val();
-    }
-    student_array.push(studentObj);
+    var new_student = {
+        name: $("#studentName").val(),
+        course: $("#course").val(),
+        grade: Math.round($("#studentGrade").val())
+        };
+        studentArray.push(new_student);
 }
-
-
 
 /**
  * clearAddStudentForm - clears out the form values based on inputIds variable
  */
 function clearAddStudentForm () {
-
+    $('#studentName').val('');
+    $('#course').val('');
+    $('#studentGrade').val('');
 }
 /**
  * calculateAverage - loop through the global student array and calculate average grade and return that value
@@ -63,18 +61,19 @@ function clearAddStudentForm () {
  */
 function calculateAverage() {
     var total = 0;
-    for (var i=0; i<student_array.grade.length; i++) {
+    for (var i=0; i<student_array.length; i++) {
         total += student_array.grade[i];
     }
-    var avg = Math.round(total / student_array.grade.length);
-    $('.avgGrade').html(avg);
+    return Math.round(total / student_array.length);
+
 }
 
 /**
  * updateData - centralized function to update the average and call student list update
  */
 function updateData () {
-    calculateAverage();
+    var avg = calculateAverage();
+    $(".avgGrade").text(avg);
     updateStudentList();
 }
 
@@ -84,8 +83,9 @@ function updateData () {
 
  */
 function updateStudentList() {
+    $('tbody').html('');
     for (var i = 0; i < student_array.length; i++) {
-
+        addStudentToDom(student_array[i]);
     }
 }
 
@@ -94,14 +94,10 @@ function updateStudentList() {
  * into the .student_list tbody
  * @param studentObj
  */
+
 function addStudentToDom(studentObj) {
-    var new_tr = $('<tr>');
-    var new_td = $('<td>');
-
-    new_tr.append(new_td);
-    $('.student-list').append(new_tr);
+    
 }
-
 
 
 /**
@@ -115,5 +111,5 @@ function reset(){
  * Listen for the document to load and reset the data to the initial state
  */
 $(document).ready(function(){
-    console.log('The document has been loaded.');
+ 
 });
