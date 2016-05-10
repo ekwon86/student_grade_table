@@ -10,9 +10,6 @@
  * inputIds - id's of the elements that are used to add students
  * @type {string[]}
  */
-var studentName = $("#studentName");
-var course = $("#course");
-var studentGrade = $("#studentGrade");
 var student_array = [];
 
 /**
@@ -128,12 +125,11 @@ function reset () {
     student_array = [];
 }
 
-
 /**
  * Listen for the document to load and reset the data to the initial state
  */
 $(document).ready(function(){
-    $('tbody').html('<h3>User Info Unavailable</h3>').addClass('');
+    $('tbody').html('<h3>User Info Unavailable</h3>');
     reset();
 });
 
@@ -143,9 +139,14 @@ $(document).ready(function(){
  * removeStudent - removes the object in the student_array
  * Suggested method
  Using index of the row of the current button to remove from array
+
  Store the index when adding to the DOM into a data attribute
- Once the object has been removed from the array, remove the DOM element that is the parent of the delete
- button that was clicked.
+ Once the object has been removed from the array, remove the DOM element that is the parent of the delete button
+ that was clicked.
  *
  */
+
+function removeStudent() {
+
+}
 
