@@ -42,9 +42,9 @@ function addStudent () {
     var new_student = {
         name: $("#studentName").val(),
         course: $("#course").val(),
-        grade: Math.round($("#studentGrade").val())
+        grade: parseInt($("#studentGrade").val())
         };
-        studentArray.push(new_student);
+        student_array.push(new_student);
 }
 
 /**
@@ -62,10 +62,9 @@ function clearAddStudentForm () {
 function calculateAverage() {
     var total = 0;
     for (var i=0; i<student_array.length; i++) {
-        total += student_array.grade[i];
+        total += student_array[i].grade;
     }
-    return Math.round(total / student_array.length);
-
+    return parseInt(total / student_array.length);
 }
 
 /**
@@ -96,15 +95,26 @@ function updateStudentList() {
  */
 
 function addStudentToDom(studentObj) {
-    
+    var student_name = $("<td>").text(studentObj.name);
+    var student_course = $("<td>").text(studentObj.course);
+    var student_grade = $("<td>").text(studentObj.grade);
+    var del = $("<td>");
+    var del_button = $("<button>").text('Delete').addClass('btn btn-danger').data(studentObj);
+    var row = $("<tr>");
+    $(del).append(del_button);
+    $(row).append(student_name, student_course, student_grade, del);
+    $("tbody").append(row);
 }
-
 
 /**
  * reset - resets the application to initial state. Global variables reset, DOM get reset to initial load state
  */
 function reset(){
-
+    var student_array = [];
+    var studentName = $("#studentName");
+    var course = $("#course");
+    var studentGrade = $("#studentGrade");
+    var tableBody = $("tbody");
 }
 
 /**
