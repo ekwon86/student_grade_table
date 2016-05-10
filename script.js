@@ -10,11 +10,11 @@
  * inputIds - id's of the elements that are used to add students
  * @type {string[]}
  */
-var student_array = [];
 var studentName = $("#studentName");
 var course = $("#course");
 var studentGrade = $("#studentGrade");
 var tableBody = $("tbody");
+var student_array = [];
 
 /**
  * addClicked - Event Handler when user clicks the add button
@@ -64,16 +64,16 @@ function calculateAverage() {
     for (var i=0; i<student_array.length; i++) {
         total += student_array[i].grade;
     }
-    return parseInt(total / student_array.length);
+    var avg = parseInt(total / student_array.length);
+    return avg;
 }
 
 /**
  * updateData - centralized function to update the average and call student list update
  */
 function updateData () {
-    var avg = calculateAverage();
-    $(".avgGrade").text(avg);
     updateStudentList();
+    $(".avgGrade").text(calculateAverage());
 }
 
 /**
@@ -109,17 +109,25 @@ function addStudentToDom(studentObj) {
 /**
  * reset - resets the application to initial state. Global variables reset, DOM get reset to initial load state
  */
-function reset(){
-    var student_array = [];
-    var studentName = $("#studentName");
-    var course = $("#course");
-    var studentGrade = $("#studentGrade");
-    var tableBody = $("tbody");
+function reset () {
+
 }
+
 
 /**
  * Listen for the document to load and reset the data to the initial state
  */
 $(document).ready(function(){
- 
+    reset();
 });
+
+
+// ----------------------------- V0.5 ----------------------------- //
+/**
+ * removeStudent - removes the object in the student_array
+ * Suggested method
+ Using index of the row of the current button to remove from array
+ Store the index when adding to the DOM into a data attribute
+ Once the object has been removed from the array, remove the DOM element that is the parent of the delete
+ button that was clicked.
+ */
