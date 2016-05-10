@@ -111,7 +111,12 @@ function addStudentToDom(studentObj) {
     var student_course = $("<td>").text(studentObj.course);
     var student_grade = $("<td>").text(studentObj.grade);
     var del = $("<td>");
-    var del_button = $("<button>").text('Delete').addClass('btn btn-danger').data(studentObj);
+    var del_button = $("<button>").text('Delete').addClass('btn btn-danger');
+
+    // del_button.click(function() {
+    //    delete student_array[student_array.indexOf(studentObj)];
+    // });
+
     var row = $("<tr>");
     $(del).append(del_button);
     $(row).append(student_name, student_course, student_grade, del);
