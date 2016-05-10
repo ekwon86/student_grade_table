@@ -69,7 +69,6 @@ function calculateAverage() {
  */
 function updateData () {
     updateStudentList();
-    calculateAverage();
     var avg_grade = calculateAverage();
     if (avg_grade >= 90 && avg_grade <= 100) {
         $(".avgGrade").addClass('label label-primary');
