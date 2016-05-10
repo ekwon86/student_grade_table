@@ -69,6 +69,7 @@ function calculateAverage() {
  */
 function updateData () {
     updateStudentList();
+    calculateAverage();
     var avg_grade = calculateAverage();
     if (avg_grade >= 90 && avg_grade <= 100) {
         $(".avgGrade").addClass('label label-primary');
@@ -123,14 +124,19 @@ function addStudentToDom(studentObj) {
  */
 function reset () {
     student_array = [];
+    $('tbody').html('<h3>User Info Unavailable</h3>');
 }
 
 /**
  * Listen for the document to load and reset the data to the initial state
  */
 $(document).ready(function(){
-    $('tbody').html('<h3>User Info Unavailable</h3>');
     reset();
+
+    $('tbody').on('click', '.btn', function() {
+        removeStudent();
+    })
+
 });
 
 
@@ -147,6 +153,10 @@ $(document).ready(function(){
  */
 
 function removeStudent() {
-
+    var row = $(this).parent();
+    var index1 = $(row).index();
+    student_array.splice(index1, 1);
+    updateStudentList();
+    updateData();
 }
 
