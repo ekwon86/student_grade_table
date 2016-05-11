@@ -112,6 +112,11 @@ function addStudentToDom(studentObj) {
     var student_grade = $("<td>").text(studentObj.grade);
     var del = $("<td>");
     var del_button = $("<button>").text('Delete').addClass('btn btn-danger');
+
+    // del_button.click(function() {
+    //     delete student_array[student_array.indexOf(studentObj)]
+    // });
+
     var row = $("<tr>");
     $(del).append(del_button);
     $(row).append(student_name, student_course, student_grade, del);
@@ -127,16 +132,16 @@ function reset () {
 }
 
 // ----------------------------- V0.5 ----------------------------- //
-function removeStudent() {
-        console.log("student in remove student function ", student);
-        var td = $(student).parent();
-        console.log("td in remove student function ", td);
-        var row = $(td).parent();
-        console.log("row in remove student function ", row);
-        var index1 = $(row).index();
-        studentArray.splice(index1, 1);
-        updateStudentList();
-        updateData();
+function removeStudent(student){
+    console.log("student in remove student function ", student);
+    var td = $(student).parent();
+    console.log("td in remove student function ", td);
+    var row = $(td).parent();
+    console.log("row in remove student function ", row);
+    var index1 = $(row).index();
+    student_array.splice(index1, 1);
+    updateStudentList();
+    updateData();
 }
 
 // ----------------------------- V1.0----------------------------- //
@@ -166,15 +171,12 @@ function retrieve_data() {
 $(document).ready(function(){
     reset();
     $('tbody').on('click', '.btn', function() {
-        removeStudent();
+        removeStudent(this);
     });
 
     $('.btn-info').click(function() {
         retrieve_data();
     });
 });
-
-
-
 
 
