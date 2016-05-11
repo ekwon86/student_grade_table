@@ -138,15 +138,18 @@ function removeStudent() {
 /** API KEY g2LoUMOOrU **/
 
 function retrieve_data() {
-    var the_data = {api_key: 'g2LoUMOOrU'};
-
     $.ajax({
         method: 'POST',
-        data: the_data,
+        data: {api_key: 'g2LoUMOOrU'},
         dataType: 'json',
         url: 'http://s-apis.learningfuze.com/sgt/get',
-        success:
-        error: console.log('The data could not be loaded,')
+        success: function(result) {
+            console.log(result);
+            student_array = result.data;
+            updateData();
+        },
+        error:
+        console.log('There was an error.')
     })
 }
 
