@@ -112,11 +112,6 @@ function addStudentToDom(studentObj) {
     var student_grade = $("<td>").text(studentObj.grade);
     var del = $("<td>");
     var del_button = $("<button>").text('Delete').addClass('btn btn-danger');
-
-    // del_button.click(function() {
-    //    delete student_array[student_array.indexOf(studentObj)];
-    // });
-
     var row = $("<tr>");
     $(del).append(del_button);
     $(row).append(student_name, student_course, student_grade, del);
@@ -131,31 +126,7 @@ function reset () {
     $('tbody').html('<h3>User Info Unavailable</h3>');
 }
 
-/**
- * Listen for the document to load and reset the data to the initial state
- */
-$(document).ready(function(){
-    reset();
-
-    $('tbody').on('click', '.btn', function() {
-        removeStudent();
-    })
-
-});
-
-
 // ----------------------------- V0.5 ----------------------------- //
-/**
- * removeStudent - removes the object in the student_array
- * Suggested method
- Using index of the row of the current button to remove from array
-
- Store the index when adding to the DOM into a data attribute
- Once the object has been removed from the array, remove the DOM element that is the parent of the delete button
- that was clicked.
- *
- */
-
 function removeStudent() {
     var row = $(this).parent();
     var index1 = $(row).index();
@@ -163,5 +134,32 @@ function removeStudent() {
     updateStudentList();
     updateData();
 }
-
 // ----------------------------- V1.0----------------------------- //
+/** API KEY g2LoUMOOrU **/
+
+function retrieve_data() {
+    var the_data = {api_key: 'g2LoUMOOrU'};
+    
+    $.ajax({
+        method: 'POST',
+        data: the_data,
+        dataType: 'json',
+        url: 'http://s-apis.learningfuze.com/sgt/get'
+    })
+}
+
+/**
+ * Listen for the document to load and reset the data to the initial state
+ */
+$(document).ready(function(){
+    reset();
+    $('tbody').on('click', '.btn', function() {
+        removeStudent();
+    });
+
+    $('.btn-info').click(function() {
+        retrieve_data();
+    });
+});
+
+
