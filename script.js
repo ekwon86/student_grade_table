@@ -128,12 +128,17 @@ function reset () {
 
 // ----------------------------- V0.5 ----------------------------- //
 function removeStudent() {
-    var row = $(this).parent();
-    var index1 = $(row).index();
-    student_array.splice(index1, 1);
-    updateStudentList();
-    updateData();
+        console.log("student in remove student function ", student);
+        var td = $(student).parent();
+        console.log("td in remove student function ", td);
+        var row = $(td).parent();
+        console.log("row in remove student function ", row);
+        var index1 = $(row).index();
+        studentArray.splice(index1, 1);
+        updateStudentList();
+        updateData();
 }
+
 // ----------------------------- V1.0----------------------------- //
 /** API KEY g2LoUMOOrU **/
 
