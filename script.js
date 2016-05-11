@@ -69,22 +69,22 @@ function calculateAverage() {
  */
 function updateData () {
     updateStudentList();
-    var avg_grade = calculateAverage();
-    if (avg_grade >= 90 && avg_grade <= 100) {
-        $(".avgGrade").addClass('label label-primary');
-    }
-    else if (avg_grade >= 80 && avg_grade <= 89) {
-        $(".avgGrade").addClass('label label-info');
-    }
-    else if (avg_grade >= 70 && avg_grade <= 79) {
-        $(".avgGrade").addClass('label label-success');
-    }
-    else if (avg_grade >= 60 && avg_grade <= 69) {
-        $(".avgGrade").addClass('label label-warning');
-    }
-    else {
-        $(".avgGrade").addClass('label label-danger');
-    }
+    // var avg_grade = $('.avgGrade');
+    // if (avg_grade >= 90 && avg_grade <= 100) {
+    //     $(".avgGrade").addClass('label label-primary');
+    // }
+    // else if (avg_grade >= 80 && avg_grade <= 89) {
+    //     $(".avgGrade").addClass('label label-info');
+    // }
+    // else if (avg_grade >= 70 && avg_grade <= 79) {
+    //     $(".avgGrade").addClass('label label-success');
+    // }
+    // else if (avg_grade >= 60 && avg_grade <= 69) {
+    //     $(".avgGrade").addClass('label label-warning');
+    // }
+    // else {
+    //     $(".avgGrade").addClass('label label-danger');
+    // }
     $(".avgGrade").text(calculateAverage());
 }
 
@@ -139,18 +139,22 @@ function removeStudent() {
 
 function retrieve_data() {
     var the_data = {api_key: 'g2LoUMOOrU'};
-    
+
     $.ajax({
         method: 'POST',
         data: the_data,
         dataType: 'json',
-        url: 'http://s-apis.learningfuze.com/sgt/get'
+        url: 'http://s-apis.learningfuze.com/sgt/get',
+        success:
+        error: console.log('The data could not be loaded,')
     })
 }
 
 /**
  * Listen for the document to load and reset the data to the initial state
  */
+
+
 $(document).ready(function(){
     reset();
     $('tbody').on('click', '.btn', function() {
