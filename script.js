@@ -128,7 +128,7 @@ function addStudentToDom(studentObj) {
     var student_course = $("<td>").text(studentObj.course);
     var student_grade = $("<td>").text(studentObj.grade);
     var del = $("<td>");
-    var del_button = $("<button>").text('Delete').addClass('btn btn-danger').attr('data-id', studentObj.id);
+    var del_button = $("<button>").text('Delete').addClass('btn btn-danger').attr('button-id', studentObj.id);
 
     var row = $("<tr>");
     $(del).append(del_button);
@@ -188,7 +188,7 @@ $(document).ready(function(){
             url: 'http://s-apis.learningfuze.com/sgt/delete',
             data: {
                 api_key: 'g2LoUMOOrU',
-                student_id: $(this).attr('data-id')
+                student_id: $(this).attr('button-id')
             },
             success: function(result) {
                 console.log('Successfully Deleted', result);
