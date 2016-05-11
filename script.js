@@ -41,6 +41,23 @@ function addStudent () {
         grade: parseInt($("#studentGrade").val())
     };
     student_array.push(new_student);
+
+    $.ajax({
+        method: 'POST',
+        data: {
+            api_key: 'g2LoUMOOrU',
+            name:new_student.name,
+            course:new_student.course,
+            grade:new_student.grade
+        },
+        dataType: 'json',
+        url: 'http://s-apis.learningfuze.com/sgt/create',
+        success: function(result) {
+            console.log(result);
+        },
+        error:
+            console.log('There was an error.')
+    })
 }
 
 /**
@@ -111,11 +128,7 @@ function addStudentToDom(studentObj) {
     var student_course = $("<td>").text(studentObj.course);
     var student_grade = $("<td>").text(studentObj.grade);
     var del = $("<td>");
-    var del_button = $("<button>").text('Delete').addClass('btn btn-danger');
-
-    // del_button.click(function() {
-    //     delete student_array[student_array.indexOf(studentObj)]
-    // });
+    var del_button = $("<button>").text('Delete').addClass('btn btn-danger').attr('data-id', studentObj.id);
 
     var row = $("<tr>");
     $(del).append(del_button);
@@ -131,7 +144,6 @@ function reset () {
     $('tbody').html('<h3>User Info Unavailable</h3>');
 }
 
-// ----------------------------- V0.5 ----------------------------- //
 function removeStudent(student){
     console.log("student in remove student function ", student);
     var td = $(student).parent();
@@ -144,13 +156,12 @@ function removeStudent(student){
     updateData();
 }
 
-// ----------------------------- V1.0----------------------------- //
-/** API KEY g2LoUMOOrU **/
-
 function retrieve_data() {
     $.ajax({
         method: 'POST',
-        data: {api_key: 'g2LoUMOOrU'},
+        data: {
+            api_key: 'g2LoUMOOrU'
+        },
         dataType: 'json',
         url: 'http://s-apis.learningfuze.com/sgt/get',
         success: function(result) {
@@ -160,23 +171,41 @@ function retrieve_data() {
         },
         error:
             console.log('There was an error.')
-    })
+    });
 }
 
 /**
  * Listen for the document to load and reset the data to the initial state
  */
-
-
 $(document).ready(function(){
     reset();
+
     $('tbody').on('click', '.btn', function() {
         removeStudent(this);
+        $.ajax({
+            method: 'POST',
+            datatype: 'json',
+            url: 'http://s-apis.learningfuze.com/sgt/delete',
+            data: {
+                api_key: 'g2LoUMOOrU',
+                student_id: $(this).attr('data-id')
+            },
+            success: function(result) {
+                console.log('Successfully Deleted', result);
+            },
+            error: function(result) {
+                console.log('There was an error', result);
+            }
+        });
+        updateData();
     });
+    updateData();
+    retrieve_data();
 
     $('.btn-info').click(function() {
         retrieve_data();
     });
+    
 });
 
 
