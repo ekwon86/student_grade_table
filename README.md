@@ -10,7 +10,7 @@ This is an application that performs CRUD (create, read, update, and delete) ope
 - [ ] **Object Oriented** - Apply object oriented programming to students and application.
 - [ ] **Sorting** - Sort students by name / grade / course
 - [ ] **Auto-Complete** - Course entry auto complete
-- 
+
 ###[LIVE DEMO](http://ekwon86.github.io/SGT)
 
 
